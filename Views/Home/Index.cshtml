@@ -1,18 +1,51 @@
-﻿@model List<InventoryItem>
+﻿@using tapsirig.Models
+@model List<Product>
 
-@{
-    ViewData["Title"] = "Anbar Sistemi";
+@if (TempData["StockWarning"] != null)
+{
+    <script>
+        alert('@TempData["StockWarning"]');
+    </script>
 }
+
+<style>
+    body { background-color: #f4f7f6; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    .anbar-container { display: flex; justify-content: center; padding-top: 50px; }
+    .anbar-card { background: #fff; padding: 30px; border-radius: 15px; width: 500px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    .btn-add { background-color: #2ecc71; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; }
+    .btn-sell { background-color: #e74c3c; color: white; border: none; padding: 5px 12px; border-radius: 5px; cursor: pointer; }
+    
+    /* Sil düyməsi üçün xüsusi rəng */
+    .btn-delete { background-color: #576574; color: white; border: none; padding: 5px 12px; border-radius: 5px; cursor: pointer; }
+    .btn-delete:hover { background-color: #2c3e50; }
+
+    .btn-disabled { background-color: #bdc3c7; cursor: not-allowed; }
+    .anbar-table { width: 100%; border-collapse: collapse; margin-top: 25px; }
+    .anbar-table th { background-color: #f8f9fa; color: #777; padding: 10px; text-align: left; }
+    .anbar-table td { padding: 12px; border-bottom: 1px solid #eee; }
+    .input-group { margin-bottom: 15px; }
+    .input-group label { display: block; margin-bottom: 5px; color: #666; font-size: 14px; }
+    .form-input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+    
+    /* Düymələri yan-yana düzmək üçün */
+    .action-cell { display: flex; gap: 8px; align-items: center; }
+</style>
 
 <div class="anbar-container">
     <div class="anbar-card">
-        <h2>Anbar Sistemi</h2>
-
-        <span class="product-label">Düyü</span>
-        <div class="input-group-custom">
-            <input type="number" value="2">
-            <button class="btn-add-custom">Əlavə et</button>
-        </div>
+        <h2 style="text-align:center; color:#2c3e50;">📦 Anbar Sistemi</h2>
+        
+        <form asp-action="Add" method="post">
+            <div class="input-group">
+                <label>Məhsulun Adı</label>
+                <input type="text" name="name" class="form-input" placeholder="Məs: Un, Düyü, Yağ..." required>
+            </div>
+            <div class="input-group">
+                <label>Miqdarı</label>
+                <input type="number" name="count" class="form-input" value="1" min="1" required>
+            </div>
+            <button type="submit" class="btn-add">Anbara Əlavə Et</button>
+        </form>
 
         <table class="anbar-table">
             <thead>
@@ -23,13 +56,40 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Düyü</td>
-                    <td>2</td>
-                    <td>
-                        <button class="btn-sell-custom">Satış et</button>
-                    </td>
-                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td style="font-weight: 500; text-transform: capitalize;">@item.Name</td>
+                        <td>
+                            @if (item.Count > 0)
+                            {
+                                <span style="color: #27ae60; font-weight: bold;">@item.Count</span>
+                            }
+                            else
+                            {
+                                <span style="color: #e74c3c; font-weight: bold; font-size: 12px;">⚠️ Bitib</span>
+                            }
+                        </td>
+                        <td class="action-cell">
+                            @if (item.Count > 0)
+                            {
+                                <form asp-action="Sell" method="post" style="margin:0;">
+                                    <input type="hidden" name="id" value="@item.Id" />
+                                    <button type="submit" class="btn-sell">Satış (-1)</button>
+                                </form>
+                            }
+                            else
+                            {
+                                <button type="button" class="btn-sell btn-disabled" disabled>Tükənib</button>
+                                
+                                <form asp-action="Delete" method="post" style="margin:0;" onsubmit="return confirm('@item.Name siyahıdan silinsin?')">
+                                    <input type="hidden" name="id" value="@item.Id" />
+                                    <button type="submit" class="btn-delete">Sil</button>
+                                </form>
+                            }
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>

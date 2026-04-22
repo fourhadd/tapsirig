@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("tapsirig")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+33aed9bbb8c6386384a92dfc4112d12fb3321ffe")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d2495ae12188bd3445f9c5d8a70aaa009ac46990")]
 [assembly: System.Reflection.AssemblyProductAttribute("tapsirig")]
 [assembly: System.Reflection.AssemblyTitleAttribute("tapsirig")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
