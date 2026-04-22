@@ -1,0 +1,36 @@
+﻿@model List<InventoryItem>
+
+@{
+    ViewData["Title"] = "Anbar Sistemi";
+}
+
+<div class="anbar-container">
+    <div class="anbar-card">
+        <h2>Anbar Sistemi</h2>
+
+        <span class="product-label">Düyü</span>
+        <div class="input-group-custom">
+            <input type="number" value="2">
+            <button class="btn-add-custom">Əlavə et</button>
+        </div>
+
+        <table class="anbar-table">
+            <thead>
+                <tr>
+                    <th>Məhsul</th>
+                    <th>Sayı</th>
+                    <th>Əməliyyat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Düyü</td>
+                    <td>2</td>
+                    <td>
+                        <button class="btn-sell-custom">Satış et</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,100 @@
+/* Mövcud kodlarınızın altına bunları əlavə edin */
+
+.anbar-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    background-color: #fcfcfc; /* Şəkildəki çox açıq fon rəngi */
+}
+
+.anbar-card {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
+    /* Şəkildəki zəif kölgə effekti */
+    box-shadow: 0 2px 15px rgba(0,0,0,0.03); 
+}
+
+.anbar-card h2 {
+    color: #8c8c8c;
+    font-weight: 400;
+    margin-bottom: 30px;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.product-label {
+    color: #b0b0b0;
+    font-size: 15px;
+    display: block;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.input-group-custom {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.input-group-custom input {
+    flex: 2;
+    padding: 10px;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+    outline: none;
+    color: #666;
+}
+
+/* "Əlavə et" düyməsi - Yaşıl rəng */
+.btn-add-custom {
+    flex: 1;
+    background-color: #7dbb87;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.btn-add-custom:hover {
+    background-color: #6da376;
+}
+
+/* Cədvəl hissəsi */
+.anbar-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.anbar-table th {
+    text-align: left;
+    color: #b5b5b5;
+    font-weight: 500;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.anbar-table td {
+    padding: 15px 0;
+    color: #777;
+    font-size: 16px;
+}
+
+/* "Satış et" düyməsi - Mavi/Pastel rəng */
+.btn-sell-custom {
+    background-color: #8da9d4;
+    color: white;
+    border: none;
+    padding: 7px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-sell-custom:hover {
+    background-color: #7a97c2;
+}
